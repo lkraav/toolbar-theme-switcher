@@ -46,6 +46,7 @@ class Toolbar_Theme_Switcher {
 
 		add_action( 'setup_theme', array( __CLASS__, 'setup_theme' ) );
 		add_action( 'init', array( __CLASS__, 'init' ) );
+		add_action( 'wp_head', array( __CLASS__, 'force_mobile_display' ) );
 	}
 
 	/**
@@ -229,6 +230,13 @@ class Toolbar_Theme_Switcher {
 		}
 
 		load_plugin_textdomain( 'toolbar-theme-switcher', false, dirname( plugin_basename( __FILE__ ) ) . '/lang' );
+	}
+
+	/**
+	 * Display theme switcher on mobiles
+	 */
+	static function force_mobile_display() {
+		printf( "<style>.logged-out #wpadminbar li#wp-admin-bar-toolbar_theme_switcher { display: block; }</style>");
 	}
 
 	/**
